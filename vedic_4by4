@@ -1,0 +1,24 @@
+`timescale 1ns / 1ps
+
+module vedic4x4(
+    input [3:0] a,
+    input [3:0] b,
+    output [7:0] p
+);
+
+wire [3:0] q0,q1,q2,q3;
+
+vedic2x2 M0(a[1:0], b[1:0], q0);
+vedic2x2 M1(a[3:2], b[1:0], q1);
+vedic2x2 M2(a[1:0], b[3:2], q2);
+vedic2x2 M3(a[3:2], b[3:2], q3);
+
+wire [7:0] temp1,temp2,temp3;
+
+assign temp1 = {4'b0000,q0};
+assign temp2 = {q1,2'b00} + {q2,2'b00};
+assign temp3 = {q3,4'b0000};
+
+assign p = temp1 + temp2 + temp3;
+
+endmodule
