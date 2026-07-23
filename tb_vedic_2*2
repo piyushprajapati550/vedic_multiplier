@@ -1,0 +1,38 @@
+
+`timescale 1ns / 1ps
+
+module vedic2x2_tb;
+
+reg [1:0] a;
+reg [1:0] b;
+
+wire [3:0] p;
+
+vedic2x2 uut(
+    .a(a),
+    .b(b),
+    .p(p)
+);
+
+initial
+begin
+
+    $display("A  B  Product");
+
+    a=2'd0; b=2'd0; #10;
+    $display("%d  %d   %d",a,b,p);
+
+    a=2'd1; b=2'd2; #10;
+    $display("%d  %d   %d",a,b,p);
+
+    a=2'd2; b=2'd3; #10;
+    $display("%d  %d   %d",a,b,p);
+
+    a=2'd3; b=2'd3; #10;
+    $display("%d  %d   %d",a,b,p);
+
+    $finish;
+
+end
+
+endmodule
